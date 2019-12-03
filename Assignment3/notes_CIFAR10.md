@@ -3,54 +3,80 @@ Validation Accuracy : 84.2
 
 
 ### Model Architecture :
+
 (Define the model (Achieved Validation ACCURACY of 84.2 in 47th Epoch))
+
 model = Sequential()
 
 model.add(SeparableConv2D(32, 3, 3, border_mode = 'same',  activation = 'relu', kernel_initializer='he_uniform',input_shape=(32, 32, 3))) # Output = 32, RF = 3x3
+
 model.add(BatchNormalization())
 
 model.add(SeparableConv2D(32,3,3, border_mode = 'same', activation= 'relu',kernel_initializer='he_uniform')) #Output = 32, RF = 5x5
+
 model.add(BatchNormalization())
+
 model.add(Dropout(0.1))
 
+
 model.add(SeparableConv2D(32,3,3, border_mode = 'same', activation= 'relu',kernel_initializer='he_uniform')) #Output = 32, RF = 7x7
+
 model.add(BatchNormalization())
+
 
 model.add(MaxPooling2D(pool_size=(2, 2))) #Output = 16, RF = 8x8
 
 model.add(SeparableConv2D(64, 3, 3, border_mode = 'same',  activation= 'relu',kernel_initializer='he_uniform')) #Output = 16, RF = 12x12
+
 model.add(BatchNormalization())
 
 model.add(SeparableConv2D(64,3,3, border_mode = 'same', activation= 'relu', kernel_initializer='he_uniform')) #Output = 16, RF = 16x16
+
 model.add(BatchNormalization())
+
 model.add(Dropout(0.1))
 
+
 model.add(SeparableConv2D(64,3,3, border_mode = 'same', activation= 'relu', kernel_initializer='he_uniform')) #Output = 16, RF = 20x20
+
 model.add(BatchNormalization())
 
 model.add(MaxPooling2D(pool_size=(2, 2))) #Output = 8, RF= 22x22
 
 model.add(SeparableConv2D(128, 3, 3, border_mode = 'same',  activation= 'relu', kernel_initializer='he_uniform')) #Output = 8, RF = 30x30
+
 model.add(BatchNormalization())
+
 
 model.add(SeparableConv2D(128,3,3, border_mode = 'same', activation= 'relu', kernel_initializer='he_uniform')) #Output = 8, RF = 38x38
+
 model.add(BatchNormalization())
+
 model.add(Dropout(0.1))
 
+
 model.add(SeparableConv2D(128,3,3, border_mode = 'same', activation= 'relu', kernel_initializer='he_uniform')) #Output = 8, RF = 46x46
+
 model.add(BatchNormalization())
 
+
 model.add(MaxPooling2D(pool_size=(2, 2))) #Output = 4, RF = 50x50
+
 model.add(Dropout(0.1))
 
 model.add(SeparableConv2D(256,3,3, border_mode='same', activation='relu', kernel_initializer='he_uniform')) #Output = 4, RF = 66x66
+
 model.add(BatchNormalization())
 
+
 model.add(SeparableConv2D(10,1,1, activation='relu', kernel_initializer='he_uniform')) 
+
 model.add(GlobalAveragePooling2D())
+
 model.add(Activation('softmax'))
 
 (Compile the model)
+
 model.compile(optimizer=Adam(lr=0.001), loss='categorical_crossentropy', metrics=['accuracy'])
 
 
@@ -166,6 +192,7 @@ Accuracy on test data is: 82.87
 
 
 ### Logs for model using Separable Covolution Layer :
+
 Epoch 1/49
 
 Epoch 00001: LearningRateScheduler setting learning rate to 0.003.
