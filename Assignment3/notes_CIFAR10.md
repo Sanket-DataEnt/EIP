@@ -8,8 +8,7 @@ Validation Accuracy : 84.2
 
 model = Sequential()
 
-model.add(SeparableConv2D(32, 3, 3, border_mode = 'same',  activation = 'relu', kernel_initializer='he_uniform',input_shape=(32, 32, 3))) # Output = 32, RF = 3x3
-
+model.add(SeparableConv2D(32, 3, 3, border_mode = 'same',  activation = 'relu', kernel_initializer='he_uniform',input_shape=(32, 32, 3))) # Output = 32, RF = 3x3 <br />
 model.add(BatchNormalization())
 
 model.add(SeparableConv2D(32,3,3, border_mode = 'same', activation= 'relu',kernel_initializer='he_uniform')) #Output = 32, RF = 5x5
