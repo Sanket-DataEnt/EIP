@@ -34,6 +34,7 @@
 visible = Input(shape=(224,224,3))
 
 ###Block 1
+
 conv1 = Conv2D(32, kernel_size=3, activation='relu',use_bias=False)(visible) 
 
 conv1_bn = BatchNormalization()(conv1)
@@ -42,6 +43,7 @@ conv1_d = Dropout(0.1)(conv1_bn)
 
 
 ###Block 2
+
 conv2 = Conv2D(32, kernel_size=3, activation='relu',use_bias=False)(conv1_d)
 
 conv2_bn = BatchNormalization()(conv2)
@@ -53,6 +55,7 @@ pool1 = MaxPooling2D(pool_size=(2, 2))(conv2_d) #110
 
 
 ###Block 3
+
 conv3 = Conv2D(64, kernel_size=3, activation='relu',use_bias=False)(pool1)
 
 conv3_bn = BatchNormalization()(conv3)
@@ -63,6 +66,7 @@ pool2 = MaxPooling2D(pool_size=(2, 2))(conv3_d) #54
 
 
 ###Block 4
+
 conv4 = Conv2D(64, kernel_size=3, activation='relu',use_bias=False)(pool2)
 
 conv4_bn = BatchNormalization()(conv4)
@@ -73,6 +77,7 @@ pool3= MaxPooling2D(pool_size=(2, 2))(conv4_d) #26
 
 
 ###Block 5
+
 conv5 = Conv2D(128, kernel_size=3, activation='relu',use_bias=False)(pool3)
 
 conv5_bn = BatchNormalization()(conv5)
@@ -90,16 +95,22 @@ neck = Dense(512, activation="relu")(neck)
 ### Define the model
 
 def build_tower(in_layer):
+
     neck = Dropout(0.1)(in_layer) #0.5 to 0.1
+
     neck = Dense(128, activation="relu")(neck)
-    #neck = Dropout(0.1)(in_layer) #0.5 to 0.1
+
     neck = Dense(128, activation="relu")(neck)
+
     return neck
 
 
 def build_head(name, in_layer):
+
     return Dense(
+
         num_units[name], activation="softmax", name=f"{name}_output"
+        
     )(in_layer)
 
 ### heads
