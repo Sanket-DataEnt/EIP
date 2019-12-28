@@ -110,17 +110,24 @@ def build_head(name, in_layer):
     return Dense(
 
         num_units[name], activation="softmax", name=f"{name}_output"
-        
+
     )(in_layer)
 
 ### heads
 gender = build_head("gender", build_tower(neck))
+
 image_quality = build_head("image_quality", build_tower(neck))
+
 age = build_head("age", build_tower(neck))
+
 weight = build_head("weight", build_tower(neck))
+
 bag = build_head("bag", build_tower(neck))
+
 footwear = build_head("footwear", build_tower(neck))
+
 emotion = build_head("emotion", build_tower(neck))
+
 pose = build_head("pose", build_tower(neck))
 
 
